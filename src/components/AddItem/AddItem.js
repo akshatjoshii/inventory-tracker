@@ -1,59 +1,36 @@
-import React, {useState} from "react";
+import React, {useState, useRef} from "react";
 import classes from "./AddItem.module.css";
 
 
 const AddItem = (props) => {
-    const [item, setItem] = useState({
-        name: '',
-        price: '',
-        description: ''
-    });
+    const nameRef = useRef(null);
+    const priceRef = useRef(null);
+    const descriptionRef = useRef(null);
     const onSubmitItem = (e) => {
         e.preventDefault()
-        if(!item.name.trim() || !item.price.trim() || !item.description.trim()) {
+        if(!nameRef.current.value.trim() || !priceRef.current.value.trim() || !descriptionRef.current.value.trim()) {
             return false;
         }
-        props.onAddItem(item);
-    }
-    const onNameChange = (e) => {
-        setItem((prevState) => {
-            return {
-                ...prevState,
-                name: e.target.value
-            }
-        })
-    }
-
-    const onPriceChange = (e) => {
-        setItem((prevState) => {
-            return {
-                ...prevState,
-                price: e.target.value
-            }
-        })
-    }
-    const onDescriptionChange = (e) => {
-        setItem((prevState) => {
-            return {
-                ...prevState,
-                description: e.target.value
-            }
-        })
+        props.onAddItem({
+            name: nameRef.current.value.trim(),
+            price: priceRef.current.value.trim(),
+            description: descriptionRef.current.value.trim()
+        });
     }
     return (
         <React.Fragment>
             <form className={classes['add-item-form']} onSubmit={onSubmitItem}>
                 <div>
                     <label htmlFor="name">Item Name</label>
-                    <input id="name" type="text" onChange={onNameChange} className={'form-input'}/>
+                    <input ref={nameRef} id="name" type="text" className={'form-input'}/>
                 </div>
                 <div>
                     <label htmlFor="price">Price</label>
-                    <input id="price" onChange={onPriceChange} type="number" className={'form-input'}/>
+                    <input ref={priceRef} id="price" type="number" className={'form-input'}/>
                 </div>
                 <div>
                     <label htmlFor="description">Description</label>
-                    <textarea id="description" onChange={onDescriptionChange} className={'form-textarea'}></textarea>
+                    <textarea ref={descriptionRef} id="description" className={'form-textarea'}></textarea>
                 </div>
                 <div>
                     <button className="button -regular">Add Item</button>
