@@ -1,0 +1,17 @@
+.list{
+    max-width: 600px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+    margin: 30px auto 0 auto;
+}
+.list-empty{
+    background-color: beige;
+    max-width: 600px;
+    width: 100%;
+    margin: 30px auto 0 auto;
+    padding: 30px;
+    text-align: center;
+}

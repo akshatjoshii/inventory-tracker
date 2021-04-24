@@ -1,0 +1,11 @@
+.item{
+    border: 1px solid rgb(231, 228, 228);
+    padding: 15px;
+    background-color: white;
+}
+.name{
+    font-weight: 600;
+}
+.description{
+    font-weight: 300;
+}
